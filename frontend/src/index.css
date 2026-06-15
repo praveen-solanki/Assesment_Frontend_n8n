@@ -1,0 +1,191 @@
+:root {
+  /* Core Palette */
+  --bg-app: #0d0f14;
+  --bg-sidebar: #13161f;
+  --bg-node: #1a1d26;
+  --bg-node-header: #212530;
+  --bg-node-body: #1a1d26;
+  --bg-input: #1f2430;
+  --border-color: #2e3545;
+  --border-radius-node: 12px;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-label: #64748b;
+  
+  /* Accent Colors */
+  --accent-indigo: #6366f1;
+  --accent-emerald: #10b981;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-violet: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-teal: #14b8a6;
+  --accent-pink: #ec4899;
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-node: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --glow-indigo: 0 0 15px rgba(99, 102, 241, 0.3);
+  
+  /* Sizing */
+  --handle-size: 14px;
+  --handle-border: 3px solid #0d0f14;
+  --tap-target-min: 44px;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  touch-action: none;
+}
+
+.react-flow__pane {
+  touch-action: none;
+}
+
+/* DVH support for mobile */
+@supports (height: 100dvh) {
+  html, body, #root {
+    height: 100dvh;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* React Flow Theming */
+.react-flow__background {
+  background-color: var(--bg-app);
+}
+
+.react-flow__controls {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-node);
+  overflow: hidden;
+}
+
+.react-flow__minimap {
+  background-color: rgba(19, 22, 31, 0.6) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(0, 0, 0, 0.4) !important;
+  stroke: var(--accent-indigo) !important;
+  stroke-width: 2;
+  stroke-dasharray: 4;
+}
+
+.react-flow__minimap-node {
+  fill: var(--accent-indigo) !important;
+  fill-opacity: 0.8;
+  stroke: white !important;
+  stroke-width: 1;
+}
+
+/* Global Form Elements */
+input, select, textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:hover, select:hover, textarea:hover {
+  border-color: var(--text-label);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-label);
+}
+
+/* React Flow Handle Glow and Interactive States */
+.react-flow__handle {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.4) !important;
+  background-color: var(--accent-indigo) !important;
+  box-shadow: 0 0 12px var(--accent-indigo) !important;
+  border-color: white !important;
+}
+
+.react-flow__handle-left, .react-flow__handle-right {
+  background-color: var(--bg-app) !important;
+}
+
+/* Annotation Logic */
+.annotation-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.annotation-resolved {
+  opacity: 0.3 !important;
+}
+
+/* Mobile-only logic in media queries */
+@media (max-width: 768px) {
+  body {
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  }
+  
+  .react-flow__handle {
+    padding: 12px !important;
+    margin: -12px !important;
+  }
+}
